@@ -14,7 +14,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        Form Pemilihan Kriteria Calon Dosen Pembimbing
+                        Form Pemilihan Kriteria Calon Dosen Pembimbing (halo tata)
                     </h3>
                 </div>
                 <div class="card-body">
