@@ -53,6 +53,32 @@ class DashboardController extends Controller
         return back()->with('error', 'Email or password is incorrect');
     }
 
+    public function register()
+    {
+        return view("register");
+    }
+    public function registerPost(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'nama' => 'required',
+            'nim' => 'required',
+            'prodi' => 'required',
+        ]);
+
+
+        $user = User::create([
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'nama' => $request->nama,
+            'nim' => $request->nim,
+            'prodi' => $request->prodi,
+        ]);
+        Auth::login($user);
+        return redirect("/");
+    }
+
     public function getTopsisApi(Request $request)
     {
         if ($request->judul_ta == null) {

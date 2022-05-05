@@ -14,11 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
-Route::post('/submit-dospem', [DashboardController::class, 'submitDospem']);
-Route::get('/daftar-dosen', [DashboardController::class, 'daftarDosen']);
+
+Route::middleware(['auth'])->group(function () {
+  Route::get('/', [DashboardController::class, 'index']);
+  Route::post('/submit-dospem', [DashboardController::class, 'submitDospem']);
+  Route::get('/daftar-dosen', [DashboardController::class, 'daftarDosen']);
+  Route::get('/logout', [DashboardController::class, 'logout']);
+});
 
 
-Route::get('/login', [DashboardController::class, 'login']);
-Route::get('/logout', [DashboardController::class, 'logout']);
+Route::get('/register', [DashboardController::class, 'register']);
+Route::post('/register', [DashboardController::class, 'registerPost']);
+Route::get('/login', [DashboardController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/login', [DashboardController::class, 'loginPost']);
